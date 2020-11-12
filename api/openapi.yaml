@@ -1,0 +1,140 @@
+openapi: 3.0.0
+info:
+  title: Client Id Provider
+  description: Provide client ids for companies in order to use properitary auth and
+    cash flow
+  contact:
+    email: contact@gamytech.com
+  version: "1.0"
+servers:
+- url: http://localhost:3000
+tags:
+- name: Accounts
+paths:
+  /accounts:
+    post:
+      tags:
+      - Accounts
+      summary: Sign up to the gamytech bridge platform
+      description: Will create a new account for the bridge server
+      operationId: createNewAccount
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/body'
+            examples:
+              JSON:
+                value:
+                  firstname: string
+                  lastname: string
+                  company_name: string
+                  email: user@example.com
+      responses:
+        "201":
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+              examples:
+                JSON:
+                  value:
+                    id: 0
+                    firstname: string
+                    lastname: string
+                    email: user@example.com
+                    company_name: string
+                    client_id: string
+      x-swagger-router-controller: Accounts
+  /accounts/{id}:
+    get:
+      tags:
+      - Accounts
+      summary: Get by id
+      description: Get a company account by id
+      operationId: getAccountById
+      parameters:
+      - name: id
+        in: path
+        required: true
+        style: simple
+        explode: false
+        schema:
+          type: string
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Account'
+              examples:
+                JSON:
+                  value:
+                    id: 0
+                    firstname: string
+                    lastname: string
+                    email: user@example.com
+                    company_name: string
+                    client_id: string
+      x-swagger-router-controller: Accounts
+components:
+  schemas:
+    Account:
+      title: Account
+      required:
+      - client_id
+      - company_name
+      - email
+      - firstname
+      - id
+      - lastname
+      type: object
+      properties:
+        id:
+          type: number
+        firstname:
+          type: string
+        lastname:
+          type: string
+        email:
+          type: string
+          format: email
+        company_name:
+          type: string
+        client_id:
+          type: string
+      example:
+        firstname: firstname
+        company_name: company_name
+        id: 0.80082819046101150206595775671303272247314453125
+        email: ""
+        client_id: client_id
+        lastname: lastname
+      x-examples:
+        JSON:
+          id: 0
+          firstname: string
+          lastname: string
+          email: user@example.com
+          company_name: string
+          client_id: string
+    body:
+      required:
+      - company_name
+      - email
+      - firstname
+      - lastname
+      type: object
+      properties:
+        firstname:
+          type: string
+        lastname:
+          type: string
+        company_name:
+          type: string
+        email:
+          type: string
+          format: email
+  securitySchemes: {}
