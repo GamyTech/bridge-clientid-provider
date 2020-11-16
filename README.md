@@ -14,6 +14,10 @@ In order to install the project and install everything correctly you need to lau
 $ npm start
 ```
 
+It will launch all the migrations, seeds and then start the API server.
+
+You can then access to it from the local url here -> [http://localhost:3002/api-doc](http://localhost:3002/api-doc)
+
 ## MySQL Connector
 In the config folder, there is `config.json` to edit according to the credentials of the databse you are using.
 
