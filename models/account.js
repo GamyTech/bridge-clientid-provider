@@ -18,7 +18,8 @@ module.exports = (sequelize, DataTypes) => {
     lastName: DataTypes.STRING,
     email: DataTypes.STRING,
     companyName: DataTypes.STRING,
-    clientId: DataTypes.STRING
+    clientId: DataTypes.STRING,
+    websocketUrl: DataTypes.TEXT
   }, {
     sequelize,
     modelName: 'Account',

@@ -2,12 +2,13 @@
 
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Users', [{
+    return queryInterface.bulkInsert('Accounts', [{
       firstName: 'John',
       lastName: 'Doe',
       email: 'contact@gamytech.com',
       companyName: 'GamyTech LTD',
       clientId: 'gamytech-client-id',
+      websocketUrl: 'ws://localhost:8080/backend/',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
