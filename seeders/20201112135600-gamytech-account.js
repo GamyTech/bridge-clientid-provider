@@ -8,7 +8,7 @@ module.exports = {
       email: 'contact@gamytech.com',
       companyName: 'GamyTech LTD',
       clientId: 'gamytech-client-id',
-      websocketUrl: 'ws://localhost:8080/backend/',
+      websocketUrl: 'ws://localhost:3001/backend/',
       createdAt: new Date(),
       updatedAt: new Date()
     }]);
