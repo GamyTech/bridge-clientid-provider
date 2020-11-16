@@ -4,7 +4,7 @@
   "description": "Provide client ids for companies in order to use properitary auth and cash flow",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
+    "prestart": "npm install; npx sequelize-cli db:migrate; npx sequelize-cli db:seed:all",
     "start": "node index.js"
   },
   "keywords": [

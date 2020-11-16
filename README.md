@@ -1,5 +1,27 @@
 
-# OpenAPI Generated JavaScript/Express Server
+# Auth Provider
+Aims to provide client ids to separate companies usage of the games and share specific workflow at runtime.
+
+## Libraries
+- Sequelize
+- OpenAPI 3.0
+- Express
+- Swagger
+
+## Install and launch the project
+In order to install the project and install everything correctly you need to launch the following command:
+```bash
+$ npm start
+```
+
+## MySQL Connector
+In the config folder, there is `config.json` to edit according to the credentials of the databse you are using.
+
+## Migrations
+As we are using sequelize-cli to simplify the process of migration, we can just run the following command to apply them:
+```bash
+$ npx sequelize-cli db:migrate
+```
 
 ## Overview
 This server was generated using the [OpenAPI Generator](https://openapi-generator.tech) project.  The code generator, and it's generated code allows you to develop your system with an API-First attitude, where the API contract is the anchor and definer of your project, and your code and business-logic aims to complete and comply to the terms in the API contract.
