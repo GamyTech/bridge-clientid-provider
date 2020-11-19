@@ -18,14 +18,13 @@ const createNewAccount = ({ body }) => new Promise(
         lastName: body.lastname,
         companyName: body.company_name,
         email: body.email,
-        clientId: uuidv1()
+        clientId: uuidv1(),
+        websocketUrl: body.websocket_url,
       })
       resolve(Service.successResponse(account));
     } catch (e) {
-      reject(Service.rejectResponse(
-        e.message || 'Invalid input',
-        e.status || 405,
-      ));
+      error = e.original.sqlMessage
+      reject(Service.rejectResponse(error || e.message || 'Invalid input', 400 || e.status || 405));
     }
   },
 );

@@ -5,10 +5,12 @@ info:
   description: Provide client ids for companies in order to use properitary auth and
     cash flow
   title: Client Id Provider
-  version: 1.0.0
+  version: "1.0"
 servers:
-- url: http://localhost:3000
-- url: http://auth-provider.gamy-tech.com
+- description: Development
+  url: http://localhost:3002
+- description: Production
+  url: http://auth-provider.gamy-tech.com
 tags:
 - name: Accounts
 paths:
@@ -17,6 +19,7 @@ paths:
       description: Will create a new account for the bridge server
       operationId: createNewAccount
       requestBody:
+        $ref: '#/components/requestBodies/inline_object'
         content:
           application/json:
             examples:
@@ -26,8 +29,27 @@ paths:
                   lastname: string
                   company_name: string
                   email: user@example.com
+                  websocket_url: string
             schema:
-              $ref: '#/components/schemas/body'
+              properties:
+                firstname:
+                  type: string
+                lastname:
+                  type: string
+                company_name:
+                  type: string
+                email:
+                  format: email
+                  type: string
+                websocket_url:
+                  type: string
+              required:
+              - company_name
+              - email
+              - firstname
+              - lastname
+              - websocket_url
+              type: object
       responses:
         "201":
           content:
@@ -41,13 +63,13 @@ paths:
                     email: user@example.com
                     company_name: string
                     client_id: string
+                    websocket_url: string
               schema:
                 $ref: '#/components/schemas/Account'
           description: Created
       summary: Sign up to the gamytech bridge platform
       tags:
       - Accounts
-      x-swagger-router-controller: Accounts
       x-eov-operation-handler: controllers/AccountsController
   /accounts/{id}:
     get:
@@ -74,22 +96,29 @@ paths:
                     email: user@example.com
                     company_name: string
                     client_id: string
+                    websocket_url: string
               schema:
                 $ref: '#/components/schemas/Account'
           description: OK
       summary: Get by id
       tags:
       - Accounts
-      x-swagger-router-controller: Accounts
       x-eov-operation-handler: controllers/AccountsController
 components:
+  requestBodies:
+    inline_object:
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/inline_object'
   schemas:
     Account:
       example:
         firstname: firstname
         company_name: company_name
         id: 0.8008281904610115
-        email: ""
+        websocket_url: websocket_url
+        email: email
         client_id: client_id
         lastname: lastname
       properties:
@@ -105,6 +134,8 @@ components:
         company_name:
           type: string
         client_id:
+          type: string
+        websocket_url:
           type: string
       required:
       - client_id
@@ -123,7 +154,8 @@ components:
           email: user@example.com
           company_name: string
           client_id: string
-    body:
+          websocket_url: string
+    inline_object:
       properties:
         firstname:
           type: string
@@ -134,10 +166,13 @@ components:
         email:
           format: email
           type: string
+        websocket_url:
+          type: string
       required:
       - company_name
       - email
       - firstname
       - lastname
+      - websocket_url
       type: object
   securitySchemes: {}
