@@ -10,7 +10,7 @@ servers:
 - description: Development
   url: http://localhost:3002
 - description: Production
-  url: http://auth-provider.gamy-tech.com
+  url: https://auth-provider.gamy-tech.com
 tags:
 - name: Accounts
 paths:
